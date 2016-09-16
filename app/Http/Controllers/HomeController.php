@@ -25,6 +25,13 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $budgets = $request->user()->budgets()->orderBy('name', 'asc')->orderBy('periodicity', 'asc')->get();
+        $periodicites = [];
+        foreach ($budgets as $budget) {
+            if (!isset($periodicites[$budget->periodicity])) {
+                $periodicites[$budget->periodicity] = [];
+            }
+            $periodicites[$budget->periodicity][] = $budget;
+        }
 
         // Dates
         $month = $request->get('month', date('m'));
@@ -38,6 +45,6 @@ class HomeController extends Controller
         $nextDate = clone($date);
         $nextDate->modify('+1 month');
         
-        return view('home', compact('budgets', 'date', 'previousDate', 'nextDate'));
+        return view('home', compact('periodicites', 'date', 'previousDate', 'nextDate'));
     }
 }

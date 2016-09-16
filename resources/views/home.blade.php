@@ -21,27 +21,32 @@
                         <div class="col-md-2">{{ link_to_route('home', $nextDate->format('F Y'), ['month' => $nextDate->format('m'), 'year' => $nextDate->format('Y')]) }} &gt;&gt;</div>
                     </div>
 
-                    @foreach($budgets as $budget)
-                        {{ $budget->setScope($date->format('m'), $date->format('Y')) }}
-                    <div class="row">
-                        <div class="col-md-2">
-                            {{ link_to_route('budget.show', $budget->name, ['id' => $budget->id]) }}
+                    @foreach($periodicites as $period => $budgets)
+                        <div class="row">
+                            <h2>{{ $period }}</h2>
                         </div>
-                        <div class="col-md-8">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-{{ $budget->progressColour }}" role="progressbar" aria-valuenow="{{ $budget->progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $budget->progress }}%;">
-                                    {{ $budget->progress }} %
+                        @foreach($budgets as $budget)
+                            {{ $budget->setScope($date->format('m'), $date->format('Y')) }}
+                        <div class="row">
+                            <div class="col-md-2">
+                                {{ link_to_route('budget.show', $budget->name, ['id' => $budget->id]) }}
+                            </div>
+                            <div class="col-md-8">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-{{ $budget->progressColour }}" role="progressbar" aria-valuenow="{{ $budget->progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $budget->progress }}%;">
+                                        {{ $budget->progress }} %
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2 text-center">
-                            {{ $budget->spent }} / {{ $budget->target }}
+                            <div class="col-md-2 text-center">
+                                {{ $budget->spent }} / {{ $budget->target }}
 
-                            <button type="button" class="btn btn-primary" name="dashboard-add-expense" data-budget-id="{{ $budget->id }}" data-budget-name="{{ $budget->name }}">
-                                <i class="fa fa-btn fa-plus"></i>
-                            </button>
+                                <button type="button" class="btn btn-primary pull-right" name="dashboard-add-expense" data-budget-id="{{ $budget->id }}" data-budget-name="{{ $budget->name }}">
+                                    <i class="fa fa-btn fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                        @endforeach
                     @endforeach
                 </div>
             </div>
