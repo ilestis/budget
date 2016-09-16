@@ -13,7 +13,7 @@ class UpdateExpenseAmount extends Migration
      */
     public function up()
     {
-        DB::statement('ALTER TABLE budgets MODIFY COLUMN target DOUBLE(10, 2)');
+        DB::statement('ALTER TABLE expenses MODIFY COLUMN amount DOUBLE(10, 2)');
     }
 
     /**
@@ -23,6 +23,6 @@ class UpdateExpenseAmount extends Migration
      */
     public function down()
     {
-        DB::statement('ALTER TABLE budgets MODIFY COLUMN target DOUBLE(5, 2)');
+        DB::statement('ALTER TABLE expenses MODIFY COLUMN amount DOUBLE(5, 2)');
     }
 }
