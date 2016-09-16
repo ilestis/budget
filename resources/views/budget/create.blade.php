@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@include('layouts.header', ['title' => trans('budget.titles.create')])
+@section('header')
+    {{ trans('budget.titles.create') }}
+@endsection
 
 @section('content')
     <section id="planning">
