@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DateTime;
 
 class HomeController extends Controller
 {
@@ -23,10 +24,20 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $budgets = $request->user()->budgets()->orderBy('name', 'asc')->orderBy('periodicity', 'asc')->get();
+
+        // Dates
         $month = $request->get('month', date('m'));
         $year = $request->get('year', date('Y'));
-        $budgets = $request->user()->budgets()->orderBy('name', 'asc')->orderBy('periodicity', 'asc')->get();
+        $date = new DateTime();
+        $date->setDate($year, $month, 1);
         
-        return view('home', compact('budgets', 'month', 'year'));
+        $previousDate = clone($date);
+        $previousDate->modify('-1 month');
+        
+        $nextDate = clone($date);
+        $nextDate->modify('+1 month');
+        
+        return view('home', compact('budgets', 'date', 'previousDate', 'nextDate'));
     }
 }

@@ -15,8 +15,14 @@
 
                     @include('common.flashs')
 
+                    <div class="row dashboard-date-switcher">
+                        <div class="col-md-2 col-lg-offset-4">&lt;&lt; {{ link_to_route('home', $previousDate->format('F Y'), ['month' => $previousDate->format('m'), 'year' => $previousDate->format('Y')]) }}</div>
+                        <div class="col-md-2">{{ $date->format('F Y') }}</div>
+                        <div class="col-md-2">{{ link_to_route('home', $nextDate->format('F Y'), ['month' => $nextDate->format('m'), 'year' => $nextDate->format('Y')]) }} &gt;&gt;</div>
+                    </div>
+
                     @foreach($budgets as $budget)
-                        {{ $budget->setScope($month, $year) }}
+                        {{ $budget->setScope($date->format('m'), $date->format('Y')) }}
                     <div class="row">
                         <div class="col-md-2">
                             {{ link_to_route('budget.show', $budget->name, ['id' => $budget->id]) }}
@@ -31,7 +37,7 @@
                         <div class="col-md-2 text-center">
                             {{ $budget->spent }} / {{ $budget->target }}
 
-                            <button type="button" class="btn btn-primary pull-right" name="dashboard-add-expense" data-budget-id="{{ $budget->id }}" data-budget-name="{{ $budget->name }}">
+                            <button type="button" class="btn btn-primary" name="dashboard-add-expense" data-budget-id="{{ $budget->id }}" data-budget-name="{{ $budget->name }}">
                                 <i class="fa fa-btn fa-plus"></i>
                             </button>
                         </div>
@@ -74,13 +80,10 @@
                     </div>
 
                     {!! Form::hidden('budget_id', null) !!}
-                    {!! Form::hidden('_back', "/home/?month=$month&year=$year") !!}
+                    {!! Form::hidden('_back', "/home/?month=" . $date->format('m') . "&year=" . $date->format('Y')) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
-
-    {{ Form::hidden('month', $month) }}
-    {{ Form::hidden('year', $year) }}
 @endsection

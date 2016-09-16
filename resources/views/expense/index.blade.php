@@ -49,6 +49,14 @@
                                         <span title="{{ $expense->details }}">{{ substr($expense->details, 0, 255)}}</span></div>
                                 </td>
                                 <td class="text-right">
+                                    <form action="{{ url('expense/' . $expense->id) }}" method="POST" class="form-inline-block">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+
+                                        <button type="submit" id="delete-expense-{{ $expense->id }}" class="btn btn-danger">
+                                            <i class="fa fa-btn fa-trash"></i>{{ trans('expense.actions.delete') }}
+                                        </button>
+                                    </form>
                                     <a href="{{ route('expense.edit', ['id' => $expense->id]) }}" class="btn btn-primary">
                                         <i class="fa fa-btn fa-pencil"></i>{{ trans('expense.actions.edit') }}
                                     </a>

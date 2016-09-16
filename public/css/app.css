@@ -24,3 +24,11 @@ section.big, aside,big {
 .navbar-default .navbar-header .navbar-brand {
     color: rgba(50, 50, 50, 0.7);
 }
+
+.dashboard-date-switcher {
+    margin: 20px 0;
+}
+
+form.form-inline-block {
+    display: inline-block;
+}
