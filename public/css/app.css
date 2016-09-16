@@ -1,0 +1,26 @@
+
+header.small {
+    height: 30% !important;
+    min-height: 30% !important;
+}
+
+section {
+    padding: 50px 0;
+}
+
+section.big, aside,big {
+    padding: 100px 0;
+}
+
+.navbar-default .nav > li > a,
+.navbar-default .nav > li > a:focus {
+    color: rgba(50, 50, 50, 0.7);
+}
+.navbar-default .nav > li > a:hover,
+.navbar-default .nav > li > a:focus:hover {
+    color: #222;
+}
+
+.navbar-default .navbar-header .navbar-brand {
+    color: rgba(50, 50, 50, 0.7);
+}
