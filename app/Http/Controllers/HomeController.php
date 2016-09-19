@@ -24,27 +24,51 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $budgets = $request->user()->budgets()->orderBy('name', 'asc')->orderBy('periodicity', 'asc')->get();
-        $periodicites = [];
-        foreach ($budgets as $budget) {
-            if (!isset($periodicites[$budget->periodicity])) {
-                $periodicites[$budget->periodicity] = [];
-            }
-            $periodicites[$budget->periodicity][] = $budget;
-        }
-
         // Dates
         $month = $request->get('month', date('m'));
         $year = $request->get('year', date('Y'));
         $date = new DateTime();
         $date->setDate($year, $month, 1);
-        
+
         $previousDate = clone($date);
         $previousDate->modify('-1 month');
-        
+
         $nextDate = clone($date);
         $nextDate->modify('+1 month');
         
-        return view('home', compact('periodicites', 'date', 'previousDate', 'nextDate'));
+        // Build periods, budgets
+        $budgets = $request->user()->budgets()->orderBy('name', 'asc')->orderBy('periodicity', 'asc')->get();
+        $periods = [
+            'monthly' => [],
+            'yearly' => [],
+        ];
+        foreach ($budgets as $budget) {
+            if (!isset($periods[$budget->periodicity])) {
+                $periods[$budget->periodicity] = [];
+            }
+            $budget->setScope($date->format('m'), $date->format('Y'));
+            $periods[$budget->periodicity][] = $budget;
+        }
+
+        // Calc totals
+        foreach ($periods as $period => $budgets) {
+            $total = [
+                'spent' => 0,
+                'target' => 0,
+                'progressColour' => '',
+                'progress' => 100
+            ];
+            foreach ($budgets as $budget) {
+                $total['spent'] += $budget->spent;
+                $total['target'] += $budget->target;
+            }
+            $total['progress'] = 100 - round(100 * ($total['spent'] / $total['target']));
+            $total['progressColour'] = $total['progress'] <= 24 ? 'danger' : $total['progress'] <= 49 ? 'warning' : 'primary';
+            $periods[$period][] = $total;
+        }
+
+        
+        
+        return view('home', compact('periods', 'date', 'previousDate', 'nextDate'));
     }
 }

@@ -5,5 +5,9 @@ return [
 
     'pages' => [
         'index' => 'Dashboard',
+    ],
+
+    'periods' => [
+        'total' => 'Total',
     ]
 ];

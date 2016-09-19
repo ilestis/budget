@@ -4,9 +4,9 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 id="homeHeading">Meal Planning made fun and easy</h1>
+                <h1 id="homeHeading">Budget Tracking made fun and easy</h1>
                 <hr>
-                <p>Meal Planner is a simple service that allows you to enter your known recipes, and help you plan your next meals.</p>
+                <p>Budget Tracker is a simple service that allows you to enter your budgets and track your expenses. We aim to provide an easy to use tool that requires minimal effort on your end.</p>
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
             </div>
         </div>
@@ -17,7 +17,7 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 class="section-heading">We've got what you need!</h2>
                     <hr class="light">
-                    <p class="text-faded">We've always wanted an intuitive, simple and easy app to plan our meals, yet never found exactly what we wanted. We've slimmed down our app to the minimum to allow you to start using it quickly and simply. Best of all? It's 100% free.</p>
+                    <p class="text-faded">We've always wanted an intuitive, simple and easy app track our budgets and expenses, yet never found exactly what we wanted. We've slimmed down our app to the minimum to allow you to start using it quickly and simply. Best of all? It's 100% free.</p>
                     <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                     <div class="service-box">
                         <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
                         <h3>Made with Love</h3>
-                        <p class="text-muted">We made our app with love and we use it every day ourselves.</p>
+                        <p class="text-muted">We made our app with love and we use it every month ourselves.</p>
                     </div>
                 </div>
             </div>
