@@ -21,7 +21,7 @@
                             <div class="col-md-2">
                                 <h2>{{ ucfirst ($period) }}</h2>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                                 <div class="row dashboard-date-switcher">
                                     <div class="col-md-4 text-left">&lt;&lt; {{ link_to_route('home', $previousDate->format('F Y'), ['month' => $previousDate->format('m'), 'year' => $previousDate->format('Y')]) }}</div>
                                     <div class="col-md-4 text-center">{{ $date->format('F Y') }}</div>
