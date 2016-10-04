@@ -56,7 +56,8 @@ class HomeController extends Controller
                 'spent' => 0,
                 'target' => 0,
                 'progressColour' => '',
-                'progress' => 100
+                'progress' => 100,
+                'remaining' => 0,
             ];
             foreach ($budgets as $budget) {
                 $total['spent'] += $budget->spent;

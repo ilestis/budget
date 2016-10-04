@@ -49,7 +49,7 @@
                                     <div class="col-md-9">
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-striped progress-bar-{{ $budget->progressColour }}" role="progressbar" aria-valuenow="{{ $budget->progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $budget->progress }}%;">
-                                                {{ $budget->progress }} % ({{ $budget->remaining }} )
+                                                {{ $budget->progress }} % ({{ $budget->remaining }} remaining )
                                             </div>
                                         </div>
                                     </div>

@@ -66,7 +66,7 @@ class Budget extends Model
 
     public function getRemainingAttribute()
     {
-        return $this->amount - $this->spent;
+        return $this->target - $this->spent;
     }
 
     /**
