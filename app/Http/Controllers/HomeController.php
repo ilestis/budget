@@ -61,6 +61,7 @@ class HomeController extends Controller
             foreach ($budgets as $budget) {
                 $total['spent'] += $budget->spent;
                 $total['target'] += $budget->target;
+                $total['remaining'] += $budget->remaining;
             }
             $total['progress'] = 100 - round(100 * ($total['spent'] / $total['target']));
             $total['progressColour'] = $total['progress'] <= 24 ? 'danger' : $total['progress'] <= 49 ? 'warning' : 'primary';

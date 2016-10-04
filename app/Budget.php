@@ -64,6 +64,11 @@ class Budget extends Model
         return $this->_spent;
     }
 
+    public function getRemainingAttribute()
+    {
+        return $this->amount - $this->spent;
+    }
+
     /**
      * Set scopes for stats
      * @param $month
