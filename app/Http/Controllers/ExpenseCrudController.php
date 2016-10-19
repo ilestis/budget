@@ -32,7 +32,7 @@ class ExpenseCrudController extends Controller
      */
     public function index(Request $request)
     {
-        $expenses = $request->user()->expenses()->paginate();
+        $expenses = $request->user()->expenses()->orderBy('amount', 'DESC')->paginate();
         return view('expense.index', compact('expenses'));
     }
 
