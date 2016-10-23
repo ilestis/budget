@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Traits\FilterableModel;
 use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model
 {
+    use FilterableModel;
+
     protected $fillable = [
         'day',
         'amount',

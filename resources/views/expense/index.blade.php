@@ -15,6 +15,8 @@
 
                     @include('common.flashs')
 
+                    {!! $filter->render() !!}
+
                     <table class="table table-striped task-table">
 
                         <!-- Table Headings -->

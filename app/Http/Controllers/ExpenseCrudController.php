@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ExpenseFilter;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Expense;
-use App\Budget;
 use App\Http\Requests\Expense\StoreExpense;
+use Illuminate\Support\Facades\DB;
 
 class ExpenseCrudController extends Controller
 {
@@ -16,14 +17,17 @@ class ExpenseCrudController extends Controller
      */
     protected $model;
 
+    protected $filter;
+
     /**
      * ExpenseController constructor.
      * @param Expense $model
      */
-    public function __construct(Expense $model)
+    public function __construct(Expense $model, ExpenseFilter $filter)
     {
         $this->middleware('auth');
         $this->model = $model;
+        $this->filter = $filter;
     }
     
     /**
@@ -32,8 +36,12 @@ class ExpenseCrudController extends Controller
      */
     public function index(Request $request)
     {
-        $expenses = $request->user()->expenses()->orderBy('day', 'DESC')->paginate();
-        return view('expense.index', compact('expenses'));
+        $expenses = $this->filter->filter($request->user()->expenses()->orderBy('day', 'DESC'));
+
+        $filter = $this->filter;
+
+
+        return view('expense.index', compact('expenses', 'filter'));
     }
 
     /**
