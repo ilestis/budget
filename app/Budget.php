@@ -34,7 +34,8 @@ class Budget extends Model
 
     public function getProgressAttribute()
     {
-        return 100 - round(100 * ($this->spent / $this->target));
+        $progress = 100 - round(100 * ($this->spent / $this->target));
+        return $progress > 0 ? $progress : 100;
     }
 
     public function getProgressColourAttribute()
@@ -42,6 +43,8 @@ class Budget extends Model
         if ($this->progress <= 24) {
             return 'danger';
         } elseif ($this->progress <= 49) {
+            return 'warning';
+        } elseif ($this->progress == 100 && $this->spent > $this->target) {
             return 'warning';
         }
         return 'success';
