@@ -45,7 +45,7 @@ class Budget extends Model
         } elseif ($this->progress <= 49) {
             return 'warning';
         } elseif ($this->progress == 100 && $this->spent > $this->target) {
-            return 'warning';
+            return 'danger';
         }
         return 'success';
     }
