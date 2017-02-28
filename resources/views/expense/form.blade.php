@@ -7,7 +7,7 @@
 
 <div class="form-group">
     {!! Form::label('day', trans('expense.fields.day'), ['class' => 'control-label']) !!}
-    {!! Form::date('day', date('Y-m-d'), ['class' => 'form-control', 'data-type' => 'datepicker']) !!}
+    {!! Form::date('day', null, ['class' => 'form-control', 'data-type' => 'datepicker']) !!}
 </div>
 
 <div class="form-group">

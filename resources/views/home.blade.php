@@ -37,8 +37,8 @@
                                 </div>
                                 <div class="col-md-9">
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped progress-bar-{{ $budget['progressColour'] }}" role="progressbar" aria-valuenow="{{ $budget['progress'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $budget['progress'] }}%;">
-                                            {{ $budget['progress'] }} % ({{ $budget['remaining'] }} remaining )
+                                        <div class="progress-bar progress-bar-striped progress-bar-{{ $budget['progressColour'] }}" role="progressbar" aria-valuenow="{{ $budget['progress'] }}" aria-valuemin="0" aria-valuemax="100" style="min-width: 10em; width: {{ $budget['progress'] }}%;">
+                                            {{ $budget['progress'] }} % ({{ $budget['remaining'] }} left )
                                         </div>
                                     </div>
                                 </div>
@@ -48,8 +48,12 @@
                                     </div>
                                     <div class="col-md-9">
                                         <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-{{ $budget->progressColour }}" role="progressbar" aria-valuenow="{{ $budget->progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $budget->progress }}%;">
-                                                {{ $budget->progress }} % ({{ $budget->remaining }} remaining )
+                                            <div class="progress-bar progress-bar-striped progress-bar-{{ $budget->progressColour }}" role="progressbar" aria-valuenow="{{ $budget->progress }}" aria-valuemin="0" aria-valuemax="100" style="min-width: 10em; width: {{ $budget->progress }}%;">
+                                                @if ($budget->remaining < 0)
+                                                    {{ $budget->remaining }}
+                                                @else
+                                                    {{ $budget->progress }} % ({{ $budget->remaining }} left )
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
